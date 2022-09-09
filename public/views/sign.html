@@ -1,0 +1,29 @@
+<div style="text-align:center;">
+<h1>Sign-In</h1>
+<form method="post" style="text-align:center">
+    <!--removed ng-model="user" from line below-->
+    <label for="fname">If you are an existing user, pleaser enter your first name</label>
+    <br>
+    <br>
+    <input type="text" id="fname" placeholder='Enter First Name' ng-model="name">
+    <br>
+    <br>
+    <button type="submit" ng-click="addItem()" style="display: flex;
+      margin: 0 auto;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+      border-radius: 6px;
+      border: none;
+      color: #fff;
+      background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+      background-origin: border-box;
+      box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;">Sign-In</button> 
+</form>
+</div>
+<br>
+<div style='text-align:center; color: red;'ng-if="wrong == true">Could not find that user in our database. Please try again.</div>

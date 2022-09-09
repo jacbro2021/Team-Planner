@@ -1,0 +1,13 @@
+<form method="post" style="text-align:center">
+    <!--removed ng-model="user" from line below-->
+    <label for="fname">Enter New Users First name:</label>
+    <input type="text" id="fname" ng-model="user.user">
+    <input type="submit" value="submit" ng-click="addItem()">
+</form>
+    <hr>
+<h1>Hello {{user.user}}!</h1>
+<br>
+<h3>List of Users First Names:</h3>
+    <ul>
+        <li ng-repeat="i in fname track by $index">{{i}}</li>
+    </ul>
