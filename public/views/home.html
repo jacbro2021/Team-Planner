@@ -1,8 +1,20 @@
-<h1 style="text-align: center;">Welcome to the Home Page</h1>
-<p style="text-align: center;">This page was created for me to learn how to code using node.js, expressjs, sqlite3, and Angularjs</p>
-<p style="text-align: center;">By making this web page, I became familiar with the angular js model, controller, view setup as well as 
-    database querys and various styling elements like flexbox.</p>
-<img src="./pictures/roy.jpg" alt="Chapel Hill logo" style="display: block;
-margin-left: auto;
-margin-right: auto;
-width: 50%;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/static.css">
+    <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body>
+    
+    <h3>List of Users First Names:</h3>
+    <ul>
+        <li ng-repeat="i in fname track by $index">{{i}}</li>
+    </ul>
+
+</body>
+</html>

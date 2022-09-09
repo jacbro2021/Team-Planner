@@ -3,7 +3,11 @@ var app = angular.module('myApp', ['ngRoute'])
 app.config(function($routeProvider) {
     $routeProvider
     .when('/home', {
-        templateUrl: '../views/home.html'
+        templateUrl: '../views/home.html',
+        controller: 'nameCtrl'
+    })
+    .when('/purpose', {
+        templateUrl: '../views/purpose.html'
     })
     .when('/names', {
         templateUrl: '../views/names.html',
@@ -27,6 +31,9 @@ app.controller('buttonCtrl', function($scope, $location) {
     }
     $scope.sign = function() {
         $location.path('/sign');
+    }
+    $scope.purpose = function() {
+        $location.path('/purpose')
     }
 })    
 

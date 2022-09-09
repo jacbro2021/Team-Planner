@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 app.use(bodyParser.urlencoded({extended: false }))
 app.use(bodyParser.json())
-let port = 3000
+let port = 8080
 
 //Work Computer IPV4 = 10.10.201.111
 
