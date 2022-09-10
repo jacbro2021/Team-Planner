@@ -3,6 +3,7 @@ var app = angular.module('myApp', ['ngRoute'])
 
 
 app.config(function($routeProvider) {
+    //This assigns the view to each route as well as the controller for that view
     $routeProvider
     .when('/home', {
         templateUrl: '../views/home.html',
@@ -28,6 +29,7 @@ app.config(function($routeProvider) {
 
 
 app.controller('buttonCtrl', function($scope, $location) {
+    //handles routing for buttons on navbar
     $scope.name = function () {
         $location.path('/names');
     }
@@ -77,6 +79,7 @@ app.controller('nameCtrl', function($scope, $http, $location, $route) {
 
 
 app.controller('signCtrl', function($scope, $http, $location) {
+    //grabs data from db to store in a dictionary to loop through for login validation.
     var dict = {
         'fname':[],
         'pass':[],
@@ -95,7 +98,7 @@ app.controller('signCtrl', function($scope, $http, $location) {
         .catch(function(err){
             console.log(err);
         })
-
+    //checks to see if form data from login page is in the database, otherwise displays error message on the site    
     $scope.addItem = function() {
         let i = 0
         while (i < dict.fname[0].length) {

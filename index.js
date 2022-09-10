@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended: false }))
 app.use(bodyParser.json())
 let port = 3000
 
-//Work Computer IPV4 = 10.10.201.111
+//Work Computer IPV4 = 10.10.201.111 (DHCP)
 
 //let config = {
 //    //configuration settings for CFS server
@@ -24,6 +24,7 @@ let port = 3000
 //}
 
 const db = new sqlite3.Database('public/data/mock.db', sqlite3.OPEN_READWRITE, (err) => {
+    //opens database
     if (err) {
         console.log(err)
     } else {
@@ -33,6 +34,7 @@ const db = new sqlite3.Database('public/data/mock.db', sqlite3.OPEN_READWRITE, (
 
 //db.run('CREATE TABLE users(fname, pass, job)')
 
+//shortcuts for frequented queries
 const insert = 'INSERT INTO users(fname, pass, job) VALUES(?, ?, ?)'
 const clear = 'DELETE FROM users'
 const qry = 'SELECT fname, pass, job FROM users'
@@ -81,7 +83,7 @@ let tab = {
 }
 
 db.all(qry, [], (err, columns) => {
-    //Init the tab json object with data from db at program runtime.
+    //Init the tab json object 'tab' with data from db at program runtime.
     if (err) {
         console.log(err)
     } else {
@@ -107,6 +109,7 @@ app.post('/users', function(req, res) {
     res.json(tab)
 })
 
+//didrects app to the public directory to find resources
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.all('*', function(req, res) {
@@ -115,6 +118,7 @@ app.all('*', function(req, res) {
     //console.log('user recieved 404 error.')
 })
 
+//serves the server on the local host at the port specified at top of this file
 console.log("Server listening on port " + port)
 app.listen(port)
 
