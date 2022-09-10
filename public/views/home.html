@@ -10,11 +10,20 @@
     <link rel="stylesheet" href="../styles/home.css">
 </head>
 <body>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row" id=contain ng-repeat="(key, value) in nameJob track by $index">
+          <div class="col-sm">
+            {{key}}
+          </div>
+          <div class="col-sm">
+            {{value}}
+          </div>
+          <hr>
+        </div>
+      </div>
     
-    <h3>List of Users First Names:</h3>
-    <ul>
-        <li ng-repeat="i in fname track by $index">{{i}}</li>
-    </ul>
-
 </body>
 </html>

@@ -1,5 +1,7 @@
 var app = angular.module('myApp', ['ngRoute'])
 
+
+
 app.config(function($routeProvider) {
     $routeProvider
     .when('/home', {
@@ -18,54 +20,74 @@ app.config(function($routeProvider) {
         controller: 'signCtrl'
     })
     .otherwise({
-        templateUrl: '../views/home.html'
+        templateUrl: '../views/sign.html',
+        controller: 'signCtrl'
     })
 })
 
-app.controller('buttonCtrl', function($scope, $location) {
-    $scope.name = function () {
-        $location.path('/names');
-    }
-    $scope.home = function () {
-        $location.path('/home');
-    }
-    $scope.sign = function() {
-        $location.path('/sign');
-    }
-    $scope.purpose = function() {
-        $location.path('/purpose')
-    }
-})    
 
-app.controller('nameCtrl', function($scope, $http) {
-    //get data from db/json
-    $scope.user = {'user':'Jacob'}
-    $http.get('/users')
-        .then(function(res) {
-            let fname = res.data.fname;
-            $scope.fname = fname;
-        })
-        .catch(function(err){
-            console.log(err);
-        })
+    app.controller('buttonCtrl', function($scope, $location) {
+        $scope.name = function () {
+            $location.path('/names');
+        }
+        $scope.home = function () {
+            $location.path('/home');
+        }
+        $scope.sign = function() {
+            $location.path('/sign');
+        }
+        $scope.purpose = function() {
+            $location.path('/purpose')
+        }
+    })
 
-    //add data to db/json
-    $scope.addItem = function() {
-        newUser = JSON.stringify($scope.user)
-        //console.log(newUser)
-        $http.post('/users', newUser)
-        .then(function(res) {
-            $scope.fname = res.data.fname
-        })
-    }
-})
+
+    app.controller('nameCtrl', function($scope, $http) {
+        //get data from db/json
+        $scope.user = {'user':'Jacob'}
+        $http.get('/users')
+            .then(function(res) {
+                let fname = res.data.fname;
+                let job = res.data.job;
+                $scope.fname = fname;
+                $scope.job = job;
+                let nameJob = {}
+                for (let i = 0; i < fname.length; i++){
+                    nameJob[fname[i]] = job[i]
+                }
+                $scope.nameJob = nameJob
+            })
+            .catch(function(err){
+                console.log(err);
+            })
+
+        //add data to db/json
+        $scope.addItem = function() {
+            newUser = JSON.stringify($scope.user)
+            //console.log(newUser)
+            $http.post('/users', newUser)
+            .then(function(res) {
+                $scope.fname = res.data.fname
+            })
+        }
+    })
 
 app.controller('signCtrl', function($scope, $http, $location) {
-    var dict = {'fname':[]}
+    $scope.navToggle = false
+
+    var dict = {
+        'fname':[],
+        'pass':[],
+        'job':[]
+    }
+
     $scope.name = ''
     $http.get('/users')
         .then(function(res) {
             dict.fname.push(res.data.fname)
+            dict.pass.push(res.data.pass)
+            dict.job.push(res.data.job)
+            console.log(dict)
         })
         .catch(function(err){
             console.log(err);
@@ -75,14 +97,15 @@ app.controller('signCtrl', function($scope, $http, $location) {
         while (i < dict.fname[0].length) {
             if ($scope.name == dict.fname[0][i]) {
                 $scope.wrong = false
+                $scope.navToggle = true
+                console.log('navToggle set to true')
                 $location.path('/home')
             } else {
-                app.controller('errCtrl', function($scope) {
-                    $scope.message = 'That name was not detected in our database. Please try again.'
-                })
                 $scope.wrong = true
             }
             i+=1;
         }
     }
 })
+
+

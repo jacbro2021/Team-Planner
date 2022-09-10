@@ -9,19 +9,19 @@ let port = 8080
 
 //Work Computer IPV4 = 10.10.201.111
 
-let config = {
-    //configuration settings for CFS server
-    server: '10.10.200.214',
-    user: 'jbrown',
-    password: 'jbrown',
-    database: 'learning',
-    options: {
-        trustServerCertificate: true,
-        cryptoCredentialsDetails: {
-            minVersion: 'TLSv1'
-        }
-    }
-}
+//let config = {
+//    //configuration settings for CFS server
+//    server: '10.10.200.214',
+//    user: 'jbrown',
+//    password: 'jbrown',
+//    database: 'learning',
+//    options: {
+//        trustServerCertificate: true,
+//        cryptoCredentialsDetails: {
+//            minVersion: 'TLSv1'
+//        }
+//    }
+//}
 
 const db = new sqlite3.Database('public/data/mock.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
@@ -31,47 +31,64 @@ const db = new sqlite3.Database('public/data/mock.db', sqlite3.OPEN_READWRITE, (
     }
 })
 
-//db.run('CREATE TABLE users(fname, lname)')
+//db.run('CREATE TABLE users(fname, pass, job)')
 
-const sql = 'INSERT INTO users(fname, lname) VALUES(?, ?)'
-const del = 'DELETE FROM users'
-const qry = 'SELECT fname FROM users'
+const insert = 'INSERT INTO users(fname, pass, job) VALUES(?, ?, ?)'
+const clear = 'DELETE FROM users'
+const qry = 'SELECT fname, pass, job FROM users'
+const del = 'DROP TABLE users'
 
 //db.run(del, (err) => {
 //    if (err) {
 //        console.log(err)
 //    } else {
-//        console.log('The table was deleted.')
+//        console.log('TABLE DELETED')
 //    }
 //})
 
-//db.run(sql, ['Niels', 'Boor'], (err) => {
+//db.run(clear, (err) => {
 //    if (err) {
 //        console.log(err)
 //    } else {
-//        console.log('The data was succesfully inserted into users.')
+//        console.log('The table was cleared.')
 //    }
 //})
 
-db.all(qry, [], (err, rows) => {
+db.run(insert, ['Barrack', 'HopeChange','Pass the affordable care act'], (err) => {
     if (err) {
         console.log(err)
     } else {
-        rows.forEach((rows) => {
-            console.log(rows.fname)
+        console.log('The data was succesfully inserted into users.')
+    }
+})
+
+db.all(qry, [], (err, columns) => {
+    if (err) {
+        console.log(err)
+    } else {
+        columns.forEach((columns) => {
+            console.log(columns.fname)
+            console.log(columns.pass)
+            console.log(columns.job)
         })
     }
 })
 
-let tab = {fname:[]}
+let tab = {
+    fname:[],
+    pass:[],
+    job:[]
+}
 
-db.all(qry, [], (err, rows) => {
+db.all(qry, [], (err, columns) => {
     //Init the tab json object with data from db at program runtime.
     if (err) {
         console.log(err)
     } else {
-        rows.forEach((rows) => {
-            tab.fname.push(rows.fname)
+        columns.forEach((columns) => {
+            tab.fname.push(columns.fname)
+            tab.pass.push(columns.pass)
+            tab.job.push(columns.job)
         })
     }
 })
