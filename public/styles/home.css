@@ -1,13 +1,17 @@
 hr {
     height: 5em;
     color:black
-    
+}
+
+p {
+    text-align: center;
 }
 
 .title{
-    color:black
+    color:white
 }
 
 #contain{
     font-size: x-large;
+    color:black
 }
