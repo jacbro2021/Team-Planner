@@ -8,18 +8,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/static.css">
     <link rel="stylesheet" href="../styles/names.css">
-    <title>Document</title>
 </head>
 <body>
-
-    <form method="post" style="text-align:center">
-        <!--removed ng-model="user" from line below-->
-        <label for="fname">Enter New Users First name:</label>
-        <input type="text" id="fname" ng-model="user.user">
-        <input type="submit" value="submit" ng-click="addItem()">
-    </form>
-    
+  <br>
+  <br>
+  <br>
+  <br>
+    <div class="container">
+    <form method="post">
+        <h1>Add New User</h1>
+        <div class="mb-3">
+          <label for="fname" class="form-label">First Name</label>
+          <input type="text" class="form-control" ng-model="user.user" id="fname">
+        </div>
+        <div class="mb-3">
+          <label for="pass" class="form-label">Password</label>
+          <input type="password" class="form-control" ng-model="user.pass" id="pass">
+        </div>
+        <div class="mb-3">
+            <label for="job" class="form-label">Job Description</label>
+            <textarea type="text" class="form-control" ng-model="user.job" id="job"></textarea>
+          </div>
+        <button type="submit" ng-click="addItem()" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <!--END BOOTSTRAP-->
+    <!--
     <h1>Hello {{user.user}}!</h1>
-
+    -->
 </body>
 </html>

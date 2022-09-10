@@ -44,7 +44,7 @@ app.config(function($routeProvider) {
 
     app.controller('nameCtrl', function($scope, $http) {
         //get data from db/json
-        $scope.user = {'user':'Jacob'}
+        $scope.user = {}
         $http.get('/users')
             .then(function(res) {
                 let fname = res.data.fname;
@@ -68,6 +68,8 @@ app.config(function($routeProvider) {
             $http.post('/users', newUser)
             .then(function(res) {
                 $scope.fname = res.data.fname
+                $scope.pass = res.data.job
+                $scope.job = res.data.job
             })
         }
     })
@@ -81,21 +83,22 @@ app.controller('signCtrl', function($scope, $http, $location) {
         'job':[]
     }
 
-    $scope.name = ''
+    $scope.fname = ''
+    $scope.pass = ''
     $http.get('/users')
         .then(function(res) {
             dict.fname.push(res.data.fname)
             dict.pass.push(res.data.pass)
             dict.job.push(res.data.job)
-            console.log(dict)
+            //console.log(dict.fname[0])
         })
         .catch(function(err){
             console.log(err);
         })
     $scope.addItem = function() {
-        let i = 1
+        let i = 0
         while (i < dict.fname[0].length) {
-            if ($scope.name == dict.fname[0][i]) {
+            if ($scope.fname == dict.fname[0][i] || $scope.pass == dict.pass[0][i]) {
                 $scope.wrong = false
                 $scope.navToggle = true
                 console.log('navToggle set to true')

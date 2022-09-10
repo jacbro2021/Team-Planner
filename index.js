@@ -54,25 +54,25 @@ const del = 'DROP TABLE users'
 //    }
 //})
 
-db.run(insert, ['Barrack', 'HopeChange','Pass the affordable care act'], (err) => {
-    if (err) {
-        console.log(err)
-    } else {
-        console.log('The data was succesfully inserted into users.')
-    }
-})
+//db.run(insert, ['Barrack', 'HopeChange','Pass the affordable care act'], (err) => {
+//    if (err) {
+//        console.log(err)
+//    } else {
+//        console.log('The data was succesfully inserted into users.')
+//    }
+//})
 
-db.all(qry, [], (err, columns) => {
-    if (err) {
-        console.log(err)
-    } else {
-        columns.forEach((columns) => {
-            console.log(columns.fname)
-            console.log(columns.pass)
-            console.log(columns.job)
-        })
-    }
-})
+//db.all(qry, [], (err, columns) => {
+//    if (err) {
+//        console.log(err)
+//    } else {
+//        columns.forEach((columns) => {
+//            console.log(columns.fname)
+//            console.log(columns.pass)
+//            console.log(columns.job)
+//        })
+//    }
+//})
 
 let tab = {
     fname:[],
@@ -100,8 +100,10 @@ app.get('/users', (req, res) => {
 
 app.post('/users', function(req, res) {
     //Appends user input to database and displays on page.
-    db.run(sql, [req.body.user, 'lname'])
-    tab.fname.push(req.body.user)   
+    db.run(insert, [req.body.user, req.body.pass, req.body.job])
+    tab.fname.push(req.body.user)
+    tab.pass.push(req.body.pass) 
+    tab.job.push(req.body.job)  
     res.json(tab)
 })
 

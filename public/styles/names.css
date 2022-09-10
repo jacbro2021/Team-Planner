@@ -1,0 +1,6 @@
+.container{
+    width:20em;
+    border:solid 2px black;
+    border-radius: 25px;
+    padding:2em;
+}

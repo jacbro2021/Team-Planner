@@ -1,7 +1,12 @@
 hr {
     height: 5em;
+    color:black
+    
 }
 
+.title{
+    color:black
+}
 
 #contain{
     font-size: x-large;
