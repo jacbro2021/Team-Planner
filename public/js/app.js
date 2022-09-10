@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
         controller: 'signCtrl'
     })
     .otherwise({
-        templateUrl: '../views/names.html'
+        templateUrl: '../views/home.html'
     })
 })
 
